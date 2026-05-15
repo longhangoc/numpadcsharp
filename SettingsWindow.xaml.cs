@@ -74,7 +74,7 @@ public partial class SettingsWindow : Window
     private void ExitButton_Click(object sender, RoutedEventArgs e)
     {
         _settings.Save();
-        Application.Current.Shutdown();
+        System.Windows.Application.Current.Shutdown();
     }
 
     protected override void OnClosed(EventArgs e)

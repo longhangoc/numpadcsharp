@@ -315,7 +315,7 @@ public partial class MainWindow : Window
     private void ExitMenuItem_Click(object? sender, EventArgs e)
     {
         _settings.Save();
-        Application.Current.Shutdown();
+        System.Windows.Application.Current.Shutdown();
     }
 
     private void SettingsButton_Click(object sender, RoutedEventArgs e)
