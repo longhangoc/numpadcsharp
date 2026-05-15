@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
+using SD = System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
+using WinForms = System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using NumpadOverlay.Models;
 
@@ -40,10 +39,10 @@ public partial class MainWindow : Window
     private readonly HashSet<int> _activeKeys = new();
     private readonly HashSet<int> _modifierKeys = new();
 
-    private NotifyIcon? _trayIcon;
+    private WinForms.NotifyIcon? _trayIcon;
     private int _currentHotkeyVKey;
-    private Icon? _trayIconIcon;
-    private ToolStripMenuItem? _showHideMenuItem;
+    private SD.Icon? _trayIconIcon;
+    private WinForms.ToolStripMenuItem? _showHideMenuItem;
     private SettingsWindow? _settingsWindow;
     private Thread? _hookThread;
     private IntPtr _keyboardHook = IntPtr.Zero;
@@ -53,7 +52,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        Icon = TryLoadSvgImageSource("Assets/appicon.svg", 256, 256);
 
         _settings = AppSettings.Load();
         DataContext = _settings;
@@ -119,14 +117,14 @@ public partial class MainWindow : Window
 
     private void InitializeTrayIcon()
     {
-        var menu = new ContextMenuStrip();
-        _showHideMenuItem = new ToolStripMenuItem("Hide Overlay", null, ShowHideMenuItem_Click);
+        var menu = new WinForms.ContextMenuStrip();
+        _showHideMenuItem = new WinForms.ToolStripMenuItem("Hide Overlay", null, ShowHideMenuItem_Click);
         menu.Items.Add(_showHideMenuItem);
-        menu.Items.Add(new ToolStripMenuItem("Open Settings", null, OpenSettingsMenuItem_Click));
-        menu.Items.Add(new ToolStripMenuItem("Exit", null, ExitMenuItem_Click));
+        menu.Items.Add(new WinForms.ToolStripMenuItem("Open Settings", null, OpenSettingsMenuItem_Click));
+        menu.Items.Add(new WinForms.ToolStripMenuItem("Exit", null, ExitMenuItem_Click));
 
-        _trayIconIcon = TryLoadSvgIcon("Assets/trayicon.svg", 64) ?? SystemIcons.Application;
-        _trayIcon = new NotifyIcon
+        _trayIconIcon = WinForms.SystemIcons.Application;
+        _trayIcon = new WinForms.NotifyIcon
         {
             Icon = _trayIconIcon,
             Text = "Numpad Overlay",
@@ -141,9 +139,9 @@ public partial class MainWindow : Window
     {
         _hookThread = new Thread(KeyboardHookThreadProc)
         {
-            IsBackground = true,
-            ApartmentState = ApartmentState.STA
+            IsBackground = true
         };
+        _hookThread.SetApartmentState(ApartmentState.STA);
         _hookThread.Start();
     }
 
@@ -259,9 +257,9 @@ public partial class MainWindow : Window
     {
         try
         {
-            var isNumLockOn = System.Windows.Forms.Control.IsKeyLocked(System.Windows.Forms.Keys.NumLock);
+            var isNumLockOn = WinForms.Control.IsKeyLocked(WinForms.Keys.NumLock);
             NumLockStatusText.Text = isNumLockOn ? "NumLock: ON" : "NumLock: OFF";
-            NumLockStatusBorder.Background = isNumLockOn ? new SolidColorBrush(Color.FromRgb(60, 160, 75)) : new SolidColorBrush(Color.FromRgb(22, 33, 62));
+            NumLockStatusBorder.Background = isNumLockOn ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(60, 160, 75)) : new SolidColorBrush(System.Windows.Media.Color.FromRgb(22, 33, 62));
         }
         catch
         {
@@ -419,63 +417,12 @@ public partial class MainWindow : Window
 
     private static ImageSource? TryLoadSvgImageSource(string relativePath, int width, int height)
     {
-        try
-        {
-            var uri = new Uri($"pack://application:,,,/{relativePath}", UriKind.Absolute);
-            var decoder = new SvgBitmapDecoder(uri, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-            var frame = decoder.Frames[0];
-
-            if (width > 0 && height > 0 && (frame.PixelWidth != width || frame.PixelHeight != height))
-            {
-                return new TransformedBitmap(frame, new ScaleTransform((double)width / frame.PixelWidth, (double)height / frame.PixelHeight));
-            }
-
-            return frame;
-        }
-        catch
-        {
-            return null;
-        }
+        return null;
     }
 
-    private static Icon? TryLoadSvgIcon(string relativePath, int size)
+    private static SD.Icon? TryLoadSvgIcon(string relativePath, int size)
     {
-        try
-        {
-            if (size <= 0)
-                size = 64;
-
-            var imageSource = TryLoadSvgImageSource(relativePath, size, size) as BitmapSource;
-            if (imageSource is null)
-                return null;
-
-            using var bitmap = BitmapFromSource(imageSource);
-            var hIcon = bitmap.GetHicon();
-            var icon = Icon.FromHandle(hIcon);
-            var cloned = (Icon)icon.Clone();
-            DestroyIcon(hIcon);
-            return cloned;
-        }
-        catch
-        {
-            return null;
-        }
-    }
-
-    private static Bitmap BitmapFromSource(BitmapSource source)
-    {
-        var width = source.PixelWidth;
-        var height = source.PixelHeight;
-        var stride = width * ((source.Format.BitsPerPixel + 7) / 8);
-        var pixels = new byte[height * stride];
-        source.CopyPixels(pixels, stride, 0);
-
-        var bitmap = new Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-        var data = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.WriteOnly, bitmap.PixelFormat);
-        Marshal.Copy(pixels, 0, data.Scan0, pixels.Length);
-        bitmap.UnlockBits(data);
-
-        return bitmap;
+        return null;
     }
 
     [DllImport("user32.dll", SetLastError = true)]

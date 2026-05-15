@@ -44,7 +44,7 @@ public partial class SettingsWindow : Window
 
     private void SizeRadio_Checked(object sender, RoutedEventArgs e)
     {
-        if (sender is RadioButton radioButton && radioButton.Tag is string tag
+        if (sender is System.Windows.Controls.RadioButton radioButton && radioButton.Tag is string tag
             && Enum.TryParse<OverlaySize>(tag, out var size))
         {
             _settings.OverlaySize = size;
