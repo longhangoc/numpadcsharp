@@ -41,7 +41,6 @@ public partial class MainWindow : Window
 
     private WinForms.NotifyIcon? _trayIcon;
     private int _currentHotkeyVKey;
-    private SD.Icon? _trayIconIcon;
     private WinForms.ToolStripMenuItem? _showHideMenuItem;
     private SettingsWindow? _settingsWindow;
     private Thread? _hookThread;
@@ -123,10 +122,9 @@ public partial class MainWindow : Window
         menu.Items.Add(new WinForms.ToolStripMenuItem("Open Settings", null, OpenSettingsMenuItem_Click));
         menu.Items.Add(new WinForms.ToolStripMenuItem("Exit", null, ExitMenuItem_Click));
 
-        _trayIconIcon = SD.SystemIcons.Application;
         _trayIcon = new WinForms.NotifyIcon
         {
-            Icon = _trayIconIcon,
+            Icon = SD.SystemIcons.Application,
             Text = "Numpad Overlay",
             Visible = true,
             ContextMenuStrip = menu
@@ -360,9 +358,6 @@ public partial class MainWindow : Window
         _trayIcon.Visible = false;
         _trayIcon.Dispose();
         _trayIcon = null;
-
-        _trayIconIcon?.Dispose();
-        _trayIconIcon = null;
     }
 
     private void CleanupKeyboardHook()
@@ -415,17 +410,4 @@ public partial class MainWindow : Window
         }
     }
 
-    private static ImageSource? TryLoadSvgImageSource(string relativePath, int width, int height)
-    {
-        return null;
-    }
-
-    private static SD.Icon? TryLoadSvgIcon(string relativePath, int size)
-    {
-        return null;
-    }
-
-    [DllImport("user32.dll", SetLastError = true)]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool DestroyIcon(IntPtr hIcon);
 }

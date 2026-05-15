@@ -39,9 +39,9 @@
 
             <StackPanel Orientation="Vertical" Margin="0,14,0,0">
                 <TextBlock Text="Size" FontWeight="SemiBold" />
-                <UniformGrid Columns="3" Rows="1" ColumnSpacing="10" Margin="0,8,0,0">
-                    <RadioButton x:Name="SmallSizeRadio" Content="Small" Tag="Small" Checked="SizeRadio_Checked" />
-                    <RadioButton x:Name="MediumSizeRadio" Content="Medium" Tag="Medium" Checked="SizeRadio_Checked" />
+                <UniformGrid Columns="3" Rows="1" Margin="0,8,0,0">
+                    <RadioButton x:Name="SmallSizeRadio" Content="Small" Tag="Small" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
+                    <RadioButton x:Name="MediumSizeRadio" Content="Medium" Tag="Medium" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
                     <RadioButton x:Name="LargeSizeRadio" Content="Large" Tag="Large" Checked="SizeRadio_Checked" />
                 </UniformGrid>
             </StackPanel>
