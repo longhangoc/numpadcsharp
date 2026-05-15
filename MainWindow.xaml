@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Numpad Overlay"
+        Title="Bàn phím số ảo"
         Width="380"
         Height="510"
         WindowStyle="None"
@@ -33,7 +33,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Numpad Overlay"
+                    <TextBlock Text="Bàn phím số ảo"
                                FontSize="14"
                                FontWeight="SemiBold"
                                Foreground="#F3F5FF"
@@ -45,7 +45,7 @@
                             VerticalAlignment="Center"
                             Margin="10,0,0,0">
                         <TextBlock x:Name="NumLockStatusText"
-                                   Text="NumLock: OFF"
+                                   Text="NumLock: TẮT"
                                    Foreground="#F3F5FF"
                                    FontFamily="Consolas"
                                    FontSize="12"

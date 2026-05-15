@@ -1,135 +1,123 @@
-# Numpad Overlay
+# NumpadCSharp
 
-A lightweight, always-on-top Windows numpad overlay application built with C# and WPF (.NET 8). Displays a virtual numpad on your screen that responds to keyboard input in real-time.
+Ứng dụng overlay bàn phím số Windows nhẹ, luôn hiển thị trên cùng, được xây dựng bằng C# và WPF (.NET 8). Hiển thị bàn phím số ảo trên màn hình và phản hồi phím nhấn theo thời gian thực.
 
-## Features
+## Tính năng
 
-- **Always-on-top overlay**: Transparent numpad window stays visible on top of other applications
-- **Real-time key feedback**: Visual highlight when numpad keys are pressed
-- **Global keyboard hook**: Captures and displays all numpad input system-wide
-- **NumLock status indicator**: Shows current NumLock state
-- **Customizable settings**:
-  - Adjust overlay opacity (10% - 100%)
-  - Choose between Small, Medium, and Large sizes
-  - Configure toggle hotkey (Ctrl + key combination)
-- **System tray integration**: Minimize/restore from system tray, quick access menu
-- **Persistent settings**: Settings saved to `settings.json` automatically
-- **Self-contained executable**: Single-file deployment, no dependencies required
+- **Overlay luôn ở trên cùng**: cửa sổ bàn phím số trong suốt luôn hiển thị phía trước các ứng dụng khác
+- **Phản hồi phím thời gian thực**: phím số được bôi sáng khi nhấn
+- **Hook phím toàn cục**: bắt và hiển thị mọi phím numpad trên hệ thống
+- **Hiển thị trạng thái NumLock**
+- **Cài đặt tùy chỉnh**:
+  - điều chỉnh độ mờ overlay (10% - 100%)
+  - chọn kích thước Nhỏ, Trung bình, hoặc Lớn
+  - chọn phím tắt bật/tắt overlay
+- **Tích hợp khay hệ thống**: ẩn/hiện overlay, mở cài đặt nhanh, thoát
+- **Lưu cấu hình tự động**: cài đặt được lưu vào `settings.json`
+- **Xuất file đơn**: có thể publish thành file `.exe` duy nhất
 
-## System Requirements
+## Yêu cầu hệ thống
 
-- **OS**: Windows 10/11 (64-bit)
-- **.NET Runtime**: .NET 8.0+ (included in self-contained build)
-- **Architecture**: x64 (win-x64)
+- **Hệ điều hành**: Windows 10/11 (64-bit)
+- **.NET Runtime**: .NET 8.0+ (nếu không xuất self-contained thì cần cài .NET 8)
+- **Kiến trúc**: x64 (win-x64)
 
-## Installation
+## Cài đặt
 
-### Option 1: Download Release Build
-1. Go to [Releases](../../releases)
-2. Download the latest `NumpadOverlay.exe`
-3. Run the executable
+### Tùy chọn 1: Download bản Release
+1. Vào trang Releases của repo
+2. Tải file `NumpadOverlay.exe`
+3. Chạy file
 
-### Option 2: Build from Source
+### Tùy chọn 2: Build từ mã nguồn
 ```bash
-# Clone repository
 git clone https://github.com/longhangoc/numpadcsharp.git
 cd numpadcsharp
 
-# Build self-contained executable
-dotnet publish NumpadOverlay.csproj `
-  --configuration Release `
-  --runtime win-x64 `
-  --self-contained true `
-  -p:PublishSingleFile=true `
-  -o ./publish
+dotnet publish NumpadOverlay.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
 
-# Run
+# Chạy
 ./publish/NumpadOverlay.exe
 ```
 
-## Usage
+## Cách sử dụng
 
-1. **Launch** the application
-2. **Numpad overlay** appears on your screen
-3. **Press keys** on your numpad to see visual feedback
-4. **Ctrl + ` (backtick)** to toggle overlay visibility (default hotkey)
-5. **Right-click tray icon** for quick menu:
-   - Hide/Show Overlay
-   - Open Settings
-   - Exit
+1. Mở ứng dụng
+2. Overlay bàn phím số sẽ hiển thị trên màn hình
+3. Nhấn phím numpad để thấy hiệu ứng
+4. Nhấn `Ctrl + `` để bật/tắt overlay (phím tắt mặc định)
+5. Nhấp chuột phải vào icon khay hệ thống để mở menu nhanh:
+   - Ẩn overlay / Hiện overlay
+   - Cài đặt
+   - Thoát
 
-## Settings
+## Cài đặt
 
-Access settings by clicking the ⚙ button on the overlay or selecting "Open Settings" from tray menu.
+Truy cập cài đặt bằng cách bấm nút ⚙ trên overlay hoặc chọn "Cài đặt" trong menu khay hệ thống.
 
-- **Opacity**: Slide to adjust overlay transparency
-- **Size**: Choose Small (75%), Medium (100%), or Large (150%)
-- **Toggle Hotkey**: Select Ctrl + (F1-F12 or backtick)
+- **Độ mờ**: điều chỉnh độ trong suốt của overlay
+- **Kích thước**: chọn Nhỏ (75%), Trung bình (100%), Lớn (150%)
+- **Phím tắt**: chọn phím `Ctrl +` (F1-F12 hoặc phím `)
 
-All changes are saved automatically when the settings window closes.
+Mọi thay đổi sẽ được lưu tự động khi đóng cửa sổ cài đặt.
 
-## Architecture
+## Cấu trúc dự án
 
-### Core Components
+### Thành phần chính
 
-- **MainWindow.xaml/xaml.cs**: Main overlay UI and keyboard hook implementation
-- **SettingsWindow.xaml/xaml.cs**: Settings UI and controls
-- **Models/AppSettings.cs**: Settings model with JSON serialization
-- **App.xaml/xaml.cs**: WPF application entry point
+- **MainWindow.xaml / MainWindow.xaml.cs**: giao diện overlay và hook bàn phím
+- **SettingsWindow.xaml / SettingsWindow.xaml.cs**: giao diện cài đặt
+- **Models/AppSettings.cs**: mô hình cài đặt và lưu JSON
+- **App.xaml / App.xaml.cs**: điểm khởi tạo WPF
 
-### Key Technologies
+### Công nghệ chính
 
-- **WPF** for UI rendering
-- **Windows Forms** for system tray integration
-- **Low-level keyboard hook** (WH_KEYBOARD_LL) for global input capture
-- **System.Text.Json** for persistent settings
+- **WPF** cho giao diện người dùng
+- **Windows Forms** cho khay hệ thống
+- **Low-level keyboard hook** (`WH_KEYBOARD_LL`) để bắt phím toàn cục
+- **System.Text.Json** để lưu cài đặt
 
-### Threading Model
+### Mô hình luồng
 
-- Keyboard hook runs on dedicated background thread with STA apartment state
-- UI updates dispatched to main dispatcher to avoid cross-thread issues
-- Settings changes propagate via `INotifyPropertyChanged`
+- Hook bàn phím chạy trên luồng riêng với apartment STA
+- Cập nhật giao diện qua Dispatcher chính để tránh lỗi cross-thread
+- Thay đổi cài đặt truyền qua `INotifyPropertyChanged`
 
-## Keyboard Hook Details
+## Chi tiết hook phím
 
-The application uses `SetWindowsHookEx` with `WH_KEYBOARD_LL` to intercept all keyboard input globally. This allows:
-- Detection of numpad key presses regardless of active window
-- Non-intrusive monitoring (does not consume the keystrokes)
-- Real-time visual feedback
+Ứng dụng dùng `SetWindowsHookEx` với `WH_KEYBOARD_LL` để chặn toàn bộ phím bàn phím trên hệ thống. Điều này cho phép:
+- phát hiện phím numpad ngay cả khi ứng dụng không phải cửa sổ đang hoạt động
+- theo dõi không xâm lấn (không ngăn phím đến ứng dụng khác)
+- hiển thị phản hồi thời gian thực
 
-## Building
+## Build
 
-### Prerequisites
+### Yêu cầu
 
 - .NET 8.0 SDK
-- Visual Studio 2022 (optional, for IDE development)
+- Visual Studio 2022 hoặc bất kỳ IDE nào hỗ trợ .NET 8 (không bắt buộc)
 
-### Debug Build
+### Build Debug
 
 ```bash
 dotnet build NumpadOverlay.csproj --configuration Debug
 ```
 
-### Release Build
+### Build Release
 
 ```bash
 dotnet build NumpadOverlay.csproj --configuration Release
 ```
 
-### Publish (Self-Contained)
+### Publish file đơn
 
 ```bash
-dotnet publish NumpadOverlay.csproj `
-  --configuration Release `
-  --runtime win-x64 `
-  --self-contained true `
-  -p:PublishSingleFile=true `
-  -o ./publish
+dotnet publish NumpadOverlay.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
 ```
 
-## Settings File
+## File cài đặt
 
-Settings are stored in `settings.json` located in the application directory:
+Cài đặt được lưu trong file `settings.json` tại thư mục ứng dụng:
 
 ```json
 {
@@ -140,37 +128,37 @@ Settings are stored in `settings.json` located in the application directory:
 ```
 
 - `opacity`: 0.1 - 1.0 (10% - 100%)
-- `overlaySize`: "small", "medium", or "large"
-- `toggleHotkeyVirtualKey`: Virtual key code (0xC0 = backtick, 0x70-0x7B = F1-F12)
+- `overlaySize`: `small`, `medium`, hoặc `large`
+- `toggleHotkeyVirtualKey`: mã phím ảo (0xC0 = phím `, 0x70-0x7B = F1-F12)
 
-## Known Limitations
+## Hạn chế
 
-- Windows-only (requires WinAPI and WPF)
-- Requires elevation/admin privileges for global keyboard hook on some systems
-- SVG icon loading disabled (uses system application icon instead)
+- Chỉ hỗ trợ Windows (dựa vào WinAPI và WPF)
+- Có thể cần quyền admin trên một số hệ thống để hook phím toàn cục
+- SVG icon không được sử dụng, dùng icon hệ thống thay thế
 
-## Troubleshooting
+## Khắc phục sự cố
 
-### Overlay doesn't appear
-- Check if the application is running in system tray
-- Try clicking the tray icon or pressing Ctrl + `
+### Overlay không hiển thị
+- Kiểm tra ứng dụng đang chạy trong khay hệ thống không
+- Bấm icon khay hoặc nhấn `Ctrl + ``
 
-### Keyboard input not captured
-- Ensure the application is running with sufficient permissions
-- Check that NumLock key is functioning
+### Không bắt được phím
+- Đảm bảo ứng dụng đang chạy với quyền phù hợp
+- Kiểm tra NumLock hoạt động
 
-### Settings not saved
-- Verify write permissions in application directory
-- Check for `settings.json` file in the app folder
+### Cài đặt không lưu
+- Kiểm tra quyền ghi vào thư mục ứng dụng
+- Kiểm tra tồn tại file `settings.json`
 
-## License
+## Giấy phép
 
-MIT License - See LICENSE file for details
+MIT License - xem file LICENSE để biết chi tiết
 
-## Contributing
+## Đóng góp
 
-Contributions welcome! Please feel free to submit issues and pull requests.
+Hoan nghênh mọi đóng góp! Vui lòng tạo issue hoặc pull request.
 
 ---
 
-**Built with**: C#, WPF, .NET 8.0
+**Xây dựng bằng**: C#, WPF, .NET 8.0

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Overlay Settings"
+        Title="Cài đặt overlay"
         SizeToContent="Height"
         Width="360"
         ResizeMode="NoResize"
@@ -16,10 +16,10 @@
         WindowStyle="ToolWindow">
     <Border Background="#FF1B1E33" CornerRadius="14" Padding="18" Margin="10">
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Overlay Settings" FontSize="20" FontWeight="Bold" />
+            <TextBlock Text="Cài đặt" FontSize="20" FontWeight="Bold" />
 
             <StackPanel Orientation="Vertical" Margin="0,14,0,0">
-                <TextBlock Text="Opacity" FontWeight="SemiBold" />
+                <TextBlock Text="Độ mờ" FontWeight="SemiBold" />
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,8,0,0">
                     <Slider x:Name="OpacitySlider"
                             Minimum="0.1"
@@ -38,16 +38,16 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,14,0,0">
-                <TextBlock Text="Size" FontWeight="SemiBold" />
+                <TextBlock Text="Kích thước" FontWeight="SemiBold" />
                 <UniformGrid Columns="3" Rows="1" Margin="0,8,0,0">
-                    <RadioButton x:Name="SmallSizeRadio" Content="Small" Tag="Small" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
-                    <RadioButton x:Name="MediumSizeRadio" Content="Medium" Tag="Medium" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
-                    <RadioButton x:Name="LargeSizeRadio" Content="Large" Tag="Large" Checked="SizeRadio_Checked" />
+                        <RadioButton x:Name="SmallSizeRadio" Content="Nhỏ" Tag="Small" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
+                    <RadioButton x:Name="MediumSizeRadio" Content="Trung bình" Tag="Medium" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
+                    <RadioButton x:Name="LargeSizeRadio" Content="Lớn" Tag="Large" Checked="SizeRadio_Checked" />
                 </UniformGrid>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,14,0,0">
-                <TextBlock Text="Toggle Hotkey" FontWeight="SemiBold" />
+                <TextBlock Text="Phím tắt" FontWeight="SemiBold" />
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,8,0,0">
                     <TextBlock Text="Ctrl +" FontFamily="Consolas" FontSize="16" VerticalAlignment="Center" />
                     <ComboBox x:Name="HotkeyKeyCombo"
@@ -75,12 +75,12 @@
 
             <Border Background="#FF222742" CornerRadius="10" Padding="14" Margin="0,4,0,0">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Note" FontWeight="SemiBold" />
-                    <TextBlock Text="Các thay đổi sẽ được giữ lại khi bạn đóng cửa sổ cài đặt." TextWrapping="Wrap" Opacity="0.8" Margin="0,6,0,0" />
+                    <TextBlock Text="Lưu ý" FontWeight="SemiBold" />
+                    <TextBlock Text="Các thay đổi sẽ được lưu khi bạn đóng cửa sổ cài đặt." TextWrapping="Wrap" Opacity="0.8" Margin="0,6,0,0" />
                 </StackPanel>
             </Border>
 
-            <Button Content="Exit Application"
+            <Button Content="Thoát ứng dụng"
                     Click="ExitButton_Click"
                     Background="#FFE94560"
                     Foreground="White"

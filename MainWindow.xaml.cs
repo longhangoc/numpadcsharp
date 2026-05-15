@@ -117,15 +117,15 @@ public partial class MainWindow : Window
     private void InitializeTrayIcon()
     {
         var menu = new WinForms.ContextMenuStrip();
-        _showHideMenuItem = new WinForms.ToolStripMenuItem("Hide Overlay", null, ShowHideMenuItem_Click);
+        _showHideMenuItem = new WinForms.ToolStripMenuItem("Ẩn overlay", null, ShowHideMenuItem_Click);
         menu.Items.Add(_showHideMenuItem);
-        menu.Items.Add(new WinForms.ToolStripMenuItem("Open Settings", null, OpenSettingsMenuItem_Click));
-        menu.Items.Add(new WinForms.ToolStripMenuItem("Exit", null, ExitMenuItem_Click));
+        menu.Items.Add(new WinForms.ToolStripMenuItem("Cài đặt", null, OpenSettingsMenuItem_Click));
+        menu.Items.Add(new WinForms.ToolStripMenuItem("Thoát", null, ExitMenuItem_Click));
 
         _trayIcon = new WinForms.NotifyIcon
         {
             Icon = SD.SystemIcons.Application,
-            Text = "Numpad Overlay",
+            Text = "Bàn phím số ảo",
             Visible = true,
             ContextMenuStrip = menu
         };
@@ -256,7 +256,7 @@ public partial class MainWindow : Window
         try
         {
             var isNumLockOn = WinForms.Control.IsKeyLocked(WinForms.Keys.NumLock);
-            NumLockStatusText.Text = isNumLockOn ? "NumLock: ON" : "NumLock: OFF";
+            NumLockStatusText.Text = isNumLockOn ? "NumLock: BẬT" : "NumLock: TẮT";
             NumLockStatusBorder.Background = isNumLockOn ? new SolidColorBrush(System.Windows.Media.Color.FromRgb(60, 160, 75)) : new SolidColorBrush(System.Windows.Media.Color.FromRgb(22, 33, 62));
         }
         catch
@@ -288,13 +288,13 @@ public partial class MainWindow : Window
         if (Visibility == Visibility.Visible)
         {
             Hide();
-            _showHideMenuItem!.Text = "Show Overlay";
+            _showHideMenuItem!.Text = "Hiện overlay";
         }
         else
         {
             Show();
             Activate();
-            _showHideMenuItem!.Text = "Hide Overlay";
+            _showHideMenuItem!.Text = "Ẩn overlay";
         }
     }
 
