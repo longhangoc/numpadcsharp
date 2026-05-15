@@ -15,11 +15,11 @@
         FontSize="14"
         WindowStyle="ToolWindow">
     <Border Background="#FF1A1A2E" CornerRadius="12" Padding="16" Margin="8">
-        <StackPanel Orientation="Vertical" Spacing="12">
+        <StackPanel Orientation="Vertical">
             <TextBlock Text="Overlay Settings" FontSize="18" FontWeight="Bold" Margin="0,0,0,8" />
 
-            <TextBlock Text="Opacity" FontWeight="SemiBold" />
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
+            <TextBlock Text="Opacity" FontWeight="SemiBold" Margin="0,0,12,0" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Slider x:Name="OpacitySlider"
                         Minimum="0.1"
                         Maximum="1.0"
@@ -27,20 +27,25 @@
                         TickFrequency="0.05"
                         IsSnapToTickEnabled="False"
                         Width="200" />
-                <TextBlock Text="{Binding Opacity, StringFormat={}{0:P0}}" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Opacity, StringFormat={}{0:P0}}" VerticalAlignment="Center" Margin="10,0,0,0" />
             </StackPanel>
 
-            <TextBlock Text="Size" FontWeight="SemiBold" />
-            <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBlock Text="Size" FontWeight="SemiBold" Margin="0,12,0,0" />
+            <StackPanel Orientation="Horizontal">
                 <RadioButton x:Name="SmallSizeRadio" Content="Small" Tag="Small" Checked="SizeRadio_Checked" />
-                <RadioButton x:Name="MediumSizeRadio" Content="Medium" Tag="Medium" Checked="SizeRadio_Checked" />
-                <RadioButton x:Name="LargeSizeRadio" Content="Large" Tag="Large" Checked="SizeRadio_Checked" />
+                <RadioButton x:Name="MediumSizeRadio" Content="Medium" Tag="Medium" Checked="SizeRadio_Checked" Margin="10,0,0,0" />
+                <RadioButton x:Name="LargeSizeRadio" Content="Large" Tag="Large" Checked="SizeRadio_Checked" Margin="10,0,0,0" />
             </StackPanel>
 
-            <TextBlock Text="Toggle Hotkey" FontWeight="SemiBold" />
-            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+            <TextBlock Text="Toggle Hotkey" FontWeight="SemiBold" Margin="0,12,0,0" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Text="Ctrl +" FontFamily="Consolas" FontSize="16" VerticalAlignment="Center" />
                 <ComboBox x:Name="HotkeyKeyCombo"
+                            Width="140"
+                            SelectionChanged="HotkeyKeyCombo_SelectionChanged"
+                            FontFamily="Consolas"
+                            FontSize="16"
+                            Margin="10,0,0,0">
                           Width="140"
                           SelectionChanged="HotkeyKeyCombo_SelectionChanged"
                           FontFamily="Consolas"
