@@ -125,7 +125,7 @@ public partial class MainWindow : Window
         _trayIcon = new WinForms.NotifyIcon
         {
             Icon = SD.SystemIcons.Application,
-            Text = "Bàn phím số ảo",
+            Text = "OpenNP",
             Visible = true,
             ContextMenuStrip = menu
         };
@@ -147,7 +147,7 @@ public partial class MainWindow : Window
     {
         _keyboardProc = LowLevelKeyboardProcImpl;
 
-        var parameters = new HwndSourceParameters("NumpadOverlayHookWindow")
+        var parameters = new HwndSourceParameters("OpenNPHookWindow")
         {
             Width = 0,
             Height = 0,

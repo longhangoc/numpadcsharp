@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Bàn phím số ảo"
+        Title="OpenNP"
         Width="380"
         Height="510"
         WindowStyle="None"
@@ -33,7 +33,7 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Bàn phím số ảo"
+                    <TextBlock Text="OpenNP"
                                FontSize="14"
                                FontWeight="SemiBold"
                                Foreground="#F3F5FF"
