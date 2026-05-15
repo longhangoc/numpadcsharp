@@ -1,0 +1,75 @@
+<Window x:Class="NumpadOverlay.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Overlay Settings"
+        SizeToContent="Height"
+        Width="340"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="#FF181A2E"
+        Foreground="#F3F5FF"
+        FontFamily="Segoe UI"
+        FontSize="14"
+        WindowStyle="ToolWindow">
+    <Border Background="#FF1A1A2E" CornerRadius="12" Padding="16" Margin="8">
+        <StackPanel Orientation="Vertical" Spacing="12">
+            <TextBlock Text="Overlay Settings" FontSize="18" FontWeight="Bold" Margin="0,0,0,8" />
+
+            <TextBlock Text="Opacity" FontWeight="SemiBold" />
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="10">
+                <Slider x:Name="OpacitySlider"
+                        Minimum="0.1"
+                        Maximum="1.0"
+                        Value="{Binding Opacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        TickFrequency="0.05"
+                        IsSnapToTickEnabled="False"
+                        Width="200" />
+                <TextBlock Text="{Binding Opacity, StringFormat={}{0:P0}}" VerticalAlignment="Center" />
+            </StackPanel>
+
+            <TextBlock Text="Size" FontWeight="SemiBold" />
+            <StackPanel Orientation="Horizontal" Spacing="10">
+                <RadioButton x:Name="SmallSizeRadio" Content="Small" Tag="Small" Checked="SizeRadio_Checked" />
+                <RadioButton x:Name="MediumSizeRadio" Content="Medium" Tag="Medium" Checked="SizeRadio_Checked" />
+                <RadioButton x:Name="LargeSizeRadio" Content="Large" Tag="Large" Checked="SizeRadio_Checked" />
+            </StackPanel>
+
+            <TextBlock Text="Toggle Hotkey" FontWeight="SemiBold" />
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <TextBlock Text="Ctrl +" FontFamily="Consolas" FontSize="16" VerticalAlignment="Center" />
+                <ComboBox x:Name="HotkeyKeyCombo"
+                          Width="140"
+                          SelectionChanged="HotkeyKeyCombo_SelectionChanged"
+                          FontFamily="Consolas"
+                          FontSize="16">
+                    <ComboBoxItem Tag="0xC0">`</ComboBoxItem>
+                    <ComboBoxItem Tag="0x70">F1</ComboBoxItem>
+                    <ComboBoxItem Tag="0x71">F2</ComboBoxItem>
+                    <ComboBoxItem Tag="0x72">F3</ComboBoxItem>
+                    <ComboBoxItem Tag="0x73">F4</ComboBoxItem>
+                    <ComboBoxItem Tag="0x74">F5</ComboBoxItem>
+                    <ComboBoxItem Tag="0x75">F6</ComboBoxItem>
+                    <ComboBoxItem Tag="0x76">F7</ComboBoxItem>
+                    <ComboBoxItem Tag="0x77">F8</ComboBoxItem>
+                    <ComboBoxItem Tag="0x78">F9</ComboBoxItem>
+                    <ComboBoxItem Tag="0x79">F10</ComboBoxItem>
+                    <ComboBoxItem Tag="0x7A">F11</ComboBoxItem>
+                    <ComboBoxItem Tag="0x7B">F12</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Content="Exit Application"
+                    Click="ExitButton_Click"
+                    Background="#FFE94560"
+                    Foreground="White"
+                    Padding="10"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    HorizontalAlignment="Stretch" />
+        </StackPanel>
+    </Border>
+</Window>
