@@ -26,14 +26,7 @@ jobs:
         run: dotnet build NumpadOverlay.csproj --configuration Release --no-restore
 
       - name: Publish self-contained single-file app
-        run: |
-          dotnet publish NumpadOverlay.csproj \
-            --configuration Release \
-            --runtime win-x64 \
-            --self-contained true \
-            -p:PublishSingleFile=true \
-            -p:PublishTrimmed=false \
-            -o ${{ github.workspace }}/publish
+        run: dotnet publish NumpadOverlay.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -o ${{ github.workspace }}/publish
 
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
