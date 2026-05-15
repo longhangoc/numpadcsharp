@@ -123,7 +123,7 @@ public partial class MainWindow : Window
         menu.Items.Add(new WinForms.ToolStripMenuItem("Open Settings", null, OpenSettingsMenuItem_Click));
         menu.Items.Add(new WinForms.ToolStripMenuItem("Exit", null, ExitMenuItem_Click));
 
-        _trayIconIcon = WinForms.SystemIcons.Application;
+        _trayIconIcon = SD.SystemIcons.Application;
         _trayIcon = new WinForms.NotifyIcon
         {
             Icon = _trayIconIcon,
