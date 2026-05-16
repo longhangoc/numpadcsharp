@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OpenNP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ef36b3b2eac7533db3791308337b648cc6e145a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+21577965db3a1b3c7f2b0a158da4449a8570c5e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("OpenNP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OpenNP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

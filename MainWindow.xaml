@@ -20,54 +20,48 @@
             CornerRadius="16"
             Padding="12">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="8" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="OpenNP"
-                               FontSize="14"
-                               FontWeight="SemiBold"
-                               Foreground="#F3F5FF"
-                               VerticalAlignment="Center" />
-                    <Border x:Name="NumLockStatusBorder"
-                            Background="#FF16213E"
-                            CornerRadius="8"
-                            Padding="6,3"
-                            VerticalAlignment="Center"
-                            Margin="10,0,0,0">
-                        <TextBlock x:Name="NumLockStatusText"
-                                   Text="NumLock: TẮT"
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="OpenNP"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
                                    Foreground="#F3F5FF"
-                                   FontFamily="Consolas"
-                                   FontSize="12"
                                    VerticalAlignment="Center" />
-                    </Border>
-                </StackPanel>
+                        <Border x:Name="NumLockStatusBorder"
+                                Background="#FF16213E"
+                                CornerRadius="8"
+                                Padding="6,3"
+                                VerticalAlignment="Center"
+                                Margin="10,0,0,0">
+                            <TextBlock x:Name="NumLockStatusText"
+                                       Text="NumLock: TẮT"
+                                       Foreground="#F3F5FF"
+                                       FontFamily="Consolas"
+                                       FontSize="12"
+                                       VerticalAlignment="Center" />
+                        </Border>
+                    </StackPanel>
 
-                <Button x:Name="SettingsButton"
-                        Grid.Column="1"
-                        Content="⚙"
-                        Width="32"
-                        Height="32"
-                        FontSize="16"
-                        Background="#FF16213E"
-                        Foreground="#F3F5FF"
-                        BorderThickness="0"
-                        Cursor="Hand"
-                        Click="SettingsButton_Click" />
-            </Grid>
+                    <Button x:Name="SettingsButton"
+                            Grid.Column="1"
+                            Content="⚙"
+                            Width="32"
+                            Height="32"
+                            FontSize="16"
+                            Background="#FF16213E"
+                            Foreground="#F3F5FF"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="SettingsButton_Click" />
+                </Grid>
 
-            <Grid Grid.Row="2"
-                  Margin="0,8,0,0">
+                <Grid Margin="0,8,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -143,7 +137,6 @@
             </Grid>
 
             <Thumb x:Name="ResizeGrip"
-                   Grid.Row="2"
                    Width="18" Height="18"
                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
                    Margin="0,0,6,6"
@@ -156,6 +149,7 @@
                     </ControlTemplate>
                 </Thumb.Template>
             </Thumb>
+        </StackPanel>
         </Grid>
     </Border>
 </Window>
