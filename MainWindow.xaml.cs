@@ -342,6 +342,12 @@ public partial class MainWindow : Window
             DragMove();
     }
 
+    private void ResizeGrip_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
+    {
+        Width = Math.Max(200, Width + e.HorizontalChange);
+        Height = Math.Max(280, Height + e.VerticalChange);
+    }
+
     protected override void OnClosed(EventArgs e)
     {
         base.OnClosed(e);

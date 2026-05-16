@@ -17,13 +17,12 @@
     <Border x:Name="RootBorder"
             Background="#DD1A1A2E"
             CornerRadius="16"
-            Padding="16"
-            Margin="8">
+            Padding="12">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="12" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid>
@@ -141,6 +140,15 @@
                     <TextBlock Text="." Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </Border>
             </Grid>
+
+            <Thumb x:Name="ResizeGrip"
+                   Grid.Row="2"
+                   Width="16" Height="16"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                   Margin="0,0,4,4"
+                   Cursor="SizeNWSE"
+                   Background="#33FFFFFF"
+                   DragDelta="ResizeGrip_DragDelta" />
         </Grid>
     </Border>
 </Window>
