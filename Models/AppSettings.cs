@@ -15,6 +15,8 @@ public class AppSettings : INotifyPropertyChanged
     private double _opacity = 0.85;
     private double _overlayScale = 1.0;
     private int _toggleHotkeyVirtualKey = 0xC0; // VK_OEM_3
+    private double _windowLeft = -1;
+    private double _windowTop = -1;
 
     [JsonIgnore]
     public static string SettingsFilePath => Path.Combine(AppContext.BaseDirectory, FileName);
@@ -54,6 +56,28 @@ public class AppSettings : INotifyPropertyChanged
             _toggleHotkeyVirtualKey = value;
             OnPropertyChanged(nameof(ToggleHotkeyVirtualKey));
             OnPropertyChanged(nameof(ToggleHotkeyLabel));
+        }
+    }
+
+    public double WindowLeft
+    {
+        get => _windowLeft;
+        set
+        {
+            if (value == _windowLeft) return;
+            _windowLeft = value;
+            OnPropertyChanged(nameof(WindowLeft));
+        }
+    }
+
+    public double WindowTop
+    {
+        get => _windowTop;
+        set
+        {
+            if (value == _windowTop) return;
+            _windowTop = value;
+            OnPropertyChanged(nameof(WindowTop));
         }
     }
 

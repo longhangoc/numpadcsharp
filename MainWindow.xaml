@@ -14,7 +14,9 @@
          ShowInTaskbar="False"
          Opacity="0.85"
          MinWidth="220" MinHeight="300"
-         MouseDown="Window_MouseDown">
+         MouseDown="Window_MouseDown"
+         Loaded="Window_Loaded"
+         LocationChanged="Window_LocationChanged">
     <Border x:Name="RootBorder"
             Background="#DD1A1A2E"
             CornerRadius="16"
@@ -34,7 +36,7 @@
                                        FontWeight="SemiBold"
                                        Foreground="#F3F5FF" />
                             <TextBlock x:Name="VersionText"
-                                       Text="v1.1.0"
+                                       Text="v1.2.0"
                                        FontSize="10"
                                        Foreground="#88F3F5FF"
                                        FontFamily="Consolas" />

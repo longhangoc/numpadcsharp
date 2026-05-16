@@ -351,6 +351,24 @@ public partial class MainWindow : Window
             DragMove();
     }
 
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (_settings.WindowLeft > 0 && _settings.WindowTop > 0)
+        {
+            Left = _settings.WindowLeft;
+            Top = _settings.WindowTop;
+        }
+    }
+
+    private void Window_LocationChanged(object sender, EventArgs e)
+    {
+        if (IsLoaded && WindowState == WindowState.Normal)
+        {
+            _settings.WindowLeft = Left;
+            _settings.WindowTop = Top;
+        }
+    }
+
     private void ResizeGrip_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
     {
         Width = Math.Max(MinWidth, Width + e.HorizontalChange);
@@ -360,6 +378,11 @@ public partial class MainWindow : Window
     protected override void OnClosed(EventArgs e)
     {
         base.OnClosed(e);
+        if (WindowState == WindowState.Normal)
+        {
+            _settings.WindowLeft = Left;
+            _settings.WindowTop = Top;
+        }
         _settings.Save();
         DisposeTrayIcon();
         CleanupKeyboardHook();
