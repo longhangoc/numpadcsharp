@@ -34,7 +34,7 @@
                                        FontWeight="SemiBold"
                                        Foreground="#F3F5FF" />
                             <TextBlock x:Name="VersionText"
-                                       Text="v1.0.0"
+                                       Text="v1.1.0"
                                        FontSize="10"
                                        Foreground="#88F3F5FF"
                                        FontFamily="Consolas" />
