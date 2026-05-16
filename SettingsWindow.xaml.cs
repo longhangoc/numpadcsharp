@@ -1,4 +1,7 @@
 using System;
+using System.Net.Http;
+using System.Reflection;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using NumpadOverlay.Models;
@@ -19,19 +22,6 @@ public partial class SettingsWindow : Window
 
     private void SettingsWindow_Loaded(object sender, RoutedEventArgs e)
     {
-        switch (_settings.OverlaySize)
-        {
-            case OverlaySize.Small:
-                SmallSizeRadio.IsChecked = true;
-                break;
-            case OverlaySize.Large:
-                LargeSizeRadio.IsChecked = true;
-                break;
-            default:
-                MediumSizeRadio.IsChecked = true;
-                break;
-        }
-
         foreach (ComboBoxItem item in HotkeyKeyCombo.Items)
         {
             if (item.Tag is string tag && TryParseHex(tag, out var value) && value == _settings.ToggleHotkeyVirtualKey)
@@ -42,14 +32,7 @@ public partial class SettingsWindow : Window
         }
     }
 
-    private void SizeRadio_Checked(object sender, RoutedEventArgs e)
-    {
-        if (sender is System.Windows.Controls.RadioButton radioButton && radioButton.Tag is string tag
-            && Enum.TryParse<OverlaySize>(tag, out var size))
-        {
-            _settings.OverlaySize = size;
-        }
-    }
+
 
     private void HotkeyKeyCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -82,4 +65,40 @@ public partial class SettingsWindow : Window
         base.OnClosed(e);
         _settings.Save();
     }
+
+    private async void UpdateButton_Click(object sender, RoutedEventArgs e)
+    {
+        UpdateButton.Content = "Đang kiểm tra...";
+        UpdateButton.IsEnabled = false;
+        await CheckForUpdateAsync();
+        UpdateButton.Content = "Kiểm tra cập nhật";
+        UpdateButton.IsEnabled = true;
+    }
+
+    private async Task CheckForUpdateAsync()
+    {
+        try
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("OpenNP");
+            var json = await client.GetStringAsync("https://api.github.com/repos/longhangoc/numpadcsharp/releases/latest");
+            using var doc = JsonDocument.Parse(json);
+            var tag = doc.RootElement.GetProperty("tag_name").GetString();
+            if (Version.TryParse(tag?.TrimStart('v'), out var latest) && latest > Assembly.GetEntryAssembly()!.GetName().Version)
+            {
+                var body = doc.RootElement.TryGetProperty("body", out var b) ? b.GetString() ?? "" : "";
+                var updateWin = new UpdateWindow(Assembly.GetEntryAssembly()!.GetName().Version!.ToString(), latest.ToString(), body, doc.RootElement.GetProperty("assets"));
+                updateWin.ShowDialog();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Đang dùng bản mới nhất.");
+            }
+        }
+        catch
+        {
+            System.Windows.MessageBox.Show("Lỗi kiểm tra cập nhật.");
+        }
+    }
+
 }

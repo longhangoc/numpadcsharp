@@ -6,19 +6,14 @@ using System.Text.Json.Serialization;
 
 namespace NumpadOverlay.Models;
 
-public enum OverlaySize
-{
-    Small,
-    Medium,
-    Large
-}
+
 
 public class AppSettings : INotifyPropertyChanged
 {
     private const string FileName = "settings.json";
 
     private double _opacity = 0.85;
-    private OverlaySize _overlaySize = OverlaySize.Medium;
+    private double _overlayScale = 1.0;
     private int _toggleHotkeyVirtualKey = 0xC0; // VK_OEM_3
 
     [JsonIgnore]
@@ -36,15 +31,15 @@ public class AppSettings : INotifyPropertyChanged
         }
     }
 
-    public OverlaySize OverlaySize
+    public double OverlayScale
     {
-        get => _overlaySize;
+        get => _overlayScale;
         set
         {
-            if (value == _overlaySize)
+            if (value == _overlayScale)
                 return;
-            _overlaySize = value;
-            OnPropertyChanged(nameof(OverlaySize));
+            _overlayScale = Math.Clamp(value, 0.5, 2.0);
+            OnPropertyChanged(nameof(OverlayScale));
             OnPropertyChanged(nameof(Scale));
         }
     }
@@ -66,12 +61,7 @@ public class AppSettings : INotifyPropertyChanged
     public string ToggleHotkeyLabel => $"Ctrl + {GetVirtualKeyLabel(ToggleHotkeyVirtualKey)}";
 
     [JsonIgnore]
-    public double Scale => OverlaySize switch
-    {
-        OverlaySize.Small => 0.75,
-        OverlaySize.Large => 1.5,
-        _ => 1.0,
-    };
+    public double Scale => OverlayScale;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -2,7 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using SD = System.Drawing;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
+using System.Net.Http;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text.Json;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -84,6 +90,7 @@ public partial class MainWindow : Window
         ApplySettings();
         InitializeTrayIcon();
         StartKeyboardHookThread();
+        _ = CheckForUpdateAsync();
     }
 
     private void Settings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -94,7 +101,7 @@ public partial class MainWindow : Window
             {
                 Opacity = _settings.Opacity;
             }
-            else if (e.PropertyName == nameof(AppSettings.OverlaySize))
+            else if (e.PropertyName == nameof(AppSettings.OverlayScale))
             {
                 ApplySettings();
             }
@@ -344,8 +351,8 @@ public partial class MainWindow : Window
 
     private void ResizeGrip_DragDelta(object sender, System.Windows.Controls.Primitives.DragDeltaEventArgs e)
     {
-        Width = Math.Max(200, Width + e.HorizontalChange);
-        Height = Math.Max(280, Height + e.VerticalChange);
+        Width = Math.Max(MinWidth, Width + e.HorizontalChange);
+        Height = Math.Max(MinHeight, Height + e.VerticalChange);
     }
 
     protected override void OnClosed(EventArgs e)
@@ -414,6 +421,25 @@ public partial class MainWindow : Window
             border.Background = brush;
             _borderBrushes[border] = brush;
         }
+    }
+
+    private async Task CheckForUpdateAsync()
+    {
+        try
+        {
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("OpenNP");
+            var json = await client.GetStringAsync("https://api.github.com/repos/longhangoc/numpadcsharp/releases/latest");
+            using var doc = JsonDocument.Parse(json);
+            var tag = doc.RootElement.GetProperty("tag_name").GetString();
+            if (Version.TryParse(tag?.TrimStart('v'), out var latest) && latest > Assembly.GetEntryAssembly()!.GetName().Version)
+            {
+                var body = doc.RootElement.TryGetProperty("body", out var b) ? b.GetString() ?? "" : "";
+                var updateWin = new UpdateWindow(Assembly.GetEntryAssembly()!.GetName().Version!.ToString(), latest.ToString(), body, doc.RootElement.GetProperty("assets"));
+                updateWin.ShowDialog();
+            }
+        }
+        catch { /* silent */ }
     }
 
 }

@@ -6,7 +6,8 @@
         mc:Ignorable="d"
         Title="Cài đặt overlay"
         SizeToContent="Height"
-        Width="360"
+        Width="420"
+        Height="380"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         Background="#FF151827"
@@ -38,12 +39,11 @@
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,14,0,0">
-                <TextBlock Text="Kích thước" FontWeight="SemiBold" />
-                <UniformGrid Columns="3" Rows="1" Margin="0,8,0,0">
-                        <RadioButton x:Name="SmallSizeRadio" Content="Nhỏ" Tag="Small" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
-                    <RadioButton x:Name="MediumSizeRadio" Content="Trung bình" Tag="Medium" Checked="SizeRadio_Checked" Margin="0,0,10,0" />
-                    <RadioButton x:Name="LargeSizeRadio" Content="Lớn" Tag="Large" Checked="SizeRadio_Checked" />
-                </UniformGrid>
+                <TextBlock Text="Kích thước (%)" FontWeight="SemiBold" />
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Slider x:Name="SizeSlider" Minimum="50" Maximum="200" Value="{Binding OverlayScale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="200" />
+                    <TextBlock Text="{Binding OverlayScale, StringFormat={}{0:0}%}" Width="50" TextAlignment="Center" VerticalAlignment="Center" Margin="8,0,0,0" />
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,14,0,0">
@@ -80,6 +80,16 @@
                 </StackPanel>
             </Border>
 
+            <Button x:Name="UpdateButton" Content="Kiểm tra cập nhật"
+                    Click="UpdateButton_Click"
+                    Background="#FF3A7CA5"
+                    Foreground="White"
+                    Padding="10"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Cursor="Hand"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,12,0,0" />
             <Button Content="Thoát ứng dụng"
                     Click="ExitButton_Click"
                     Background="#FFE94560"

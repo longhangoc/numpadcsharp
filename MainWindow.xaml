@@ -10,10 +10,11 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Topmost="True"
-        ShowInTaskbar="False"
-        Opacity="0.85"
-        MouseDown="Window_MouseDown">
+         Topmost="True"
+         ShowInTaskbar="False"
+         Opacity="0.85"
+         MinWidth="220" MinHeight="300"
+         MouseDown="Window_MouseDown">
     <Border x:Name="RootBorder"
             Background="#DD1A1A2E"
             CornerRadius="16"
@@ -143,12 +144,18 @@
 
             <Thumb x:Name="ResizeGrip"
                    Grid.Row="2"
-                   Width="16" Height="16"
+                   Width="18" Height="18"
                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                   Margin="0,0,4,4"
+                   Margin="0,0,6,6"
                    Cursor="SizeNWSE"
-                   Background="#33FFFFFF"
-                   DragDelta="ResizeGrip_DragDelta" />
+                   DragDelta="ResizeGrip_DragDelta">
+                <Thumb.Template>
+                    <ControlTemplate>
+                        <Path Data="M 0,18 L 18,18 L 18,0 L 12,0 L 12,12 L 0,12 Z"
+                              Fill="#55FFFFFF" Stroke="#F3F5FF" StrokeThickness="1" />
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
         </Grid>
     </Border>
 </Window>
