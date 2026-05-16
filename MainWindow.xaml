@@ -28,11 +28,17 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="OpenNP"
-                                   FontSize="14"
-                                   FontWeight="SemiBold"
-                                   Foreground="#F3F5FF"
-                                   VerticalAlignment="Center" />
+                        <StackPanel>
+                            <TextBlock Text="OpenNP"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="#F3F5FF" />
+                            <TextBlock x:Name="VersionText"
+                                       Text="v1.0.0"
+                                       FontSize="10"
+                                       Foreground="#88F3F5FF"
+                                       FontFamily="Consolas" />
+                        </StackPanel>
                         <Border x:Name="NumLockStatusBorder"
                                 Background="#FF16213E"
                                 CornerRadius="8"
@@ -62,79 +68,80 @@
                 </Grid>
 
                 <Grid Margin="0,8,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Border x:Name="NumLockKey" Grid.Row="0" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="NumLock" Foreground="#F3F5FF" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-                </Border>
-                <Border x:Name="DivideKey" Grid.Row="0" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="/" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="MultiplyKey" Grid.Row="0" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="*" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="BackspaceKey" Grid.Row="0" Grid.Column="3" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="Back" Foreground="#F3F5FF" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-                </Border>
+                    <Border x:Name="NumLockKey" Grid.Row="0" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="NumLock" Foreground="#F3F5FF" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+                    <Border x:Name="DivideKey" Grid.Row="0" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="/" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="MultiplyKey" Grid.Row="0" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="*" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="BackspaceKey" Grid.Row="0" Grid.Column="3" Background="#FF16213E" CornerRadius="10" Padding="12" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="Back" Foreground="#F3F5FF" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
 
-                <Border x:Name="Key7" Grid.Row="1" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="7" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="Key8" Grid.Row="1" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="8" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="Key9" Grid.Row="1" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="9" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="SubtractKey" Grid.Row="1" Grid.Column="3" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="-" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
+                    <Border x:Name="Key7" Grid.Row="1" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="7" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="Key8" Grid.Row="1" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="8" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="Key9" Grid.Row="1" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="9" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="SubtractKey" Grid.Row="1" Grid.Column="3" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="-" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
 
-                <Border x:Name="Key4" Grid.Row="2" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="4" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="Key5" Grid.Row="2" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="5" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="Key6" Grid.Row="2" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="6" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="AddKey" Grid.Row="2" Grid.Column="3" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="+" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
+                    <Border x:Name="Key4" Grid.Row="2" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="4" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="Key5" Grid.Row="2" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="5" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="Key6" Grid.Row="2" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="6" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="AddKey" Grid.Row="2" Grid.Column="3" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="+" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
 
-                <Border x:Name="Key1" Grid.Row="3" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="1" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="Key2" Grid.Row="3" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="2" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="Key3" Grid.Row="3" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="3" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="EnterKey" Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="Enter" Foreground="#F3F5FF" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
-                </Border>
+                    <Border x:Name="Key1" Grid.Row="3" Grid.Column="0" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="1" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="Key2" Grid.Row="3" Grid.Column="1" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="2" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="Key3" Grid.Row="3" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="3" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="EnterKey" Grid.Row="3" Grid.Column="3" Grid.RowSpan="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="Enter" Foreground="#F3F5FF" FontFamily="Consolas" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
 
-                <Border x:Name="ZeroKey" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="0" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-                <Border x:Name="DecimalKey" Grid.Row="4" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
-                    <TextBlock Text="." Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </Border>
-            </Grid>
+                    <Border x:Name="ZeroKey" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="0" Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <Border x:Name="DecimalKey" Grid.Row="4" Grid.Column="2" Background="#FF16213E" CornerRadius="10" Padding="18" IsHitTestVisible="False" Opacity="0.95">
+                        <TextBlock Text="." Foreground="#F3F5FF" FontFamily="Consolas" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </Grid>
+            </StackPanel>
 
             <Thumb x:Name="ResizeGrip"
                    Width="18" Height="18"
@@ -149,7 +156,6 @@
                     </ControlTemplate>
                 </Thumb.Template>
             </Thumb>
-        </StackPanel>
         </Grid>
     </Border>
 </Window>

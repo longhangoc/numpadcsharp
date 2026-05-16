@@ -81,7 +81,14 @@ public partial class SettingsWindow : Window
         {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd("OpenNP");
-            var json = await client.GetStringAsync("https://api.github.com/repos/longhangoc/numpadcsharp/releases/latest");
+            var response = await client.GetAsync("https://api.github.com/repos/longhangoc/numpadcsharp/releases/latest");
+            if (!response.IsSuccessStatusCode)
+            {
+                System.Windows.MessageBox.Show("Chưa có bản phát hành nào trên GitHub.");
+                return;
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(json);
             var tag = doc.RootElement.GetProperty("tag_name").GetString();
             if (Version.TryParse(tag?.TrimStart('v'), out var latest) && latest > Assembly.GetEntryAssembly()!.GetName().Version)
@@ -95,9 +102,9 @@ public partial class SettingsWindow : Window
                 System.Windows.MessageBox.Show("Đang dùng bản mới nhất.");
             }
         }
-        catch
+        catch (Exception ex)
         {
-            System.Windows.MessageBox.Show("Lỗi kiểm tra cập nhật.");
+            System.Windows.MessageBox.Show($"Lỗi kiểm tra cập nhật: {ex.Message}");
         }
     }
 

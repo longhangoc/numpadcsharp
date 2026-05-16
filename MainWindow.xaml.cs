@@ -91,6 +91,8 @@ public partial class MainWindow : Window
         InitializeTrayIcon();
         StartKeyboardHookThread();
         _ = CheckForUpdateAsync();
+
+        VersionText.Text = $"v{Assembly.GetEntryAssembly()?.GetName().Version?.ToString(3) ?? "1.0.0"}";
     }
 
     private void Settings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
