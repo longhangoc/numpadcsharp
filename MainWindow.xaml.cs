@@ -431,7 +431,11 @@ public partial class MainWindow : Window
         {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd("OpenNP");
-            var json = await client.GetStringAsync("https://api.github.com/repos/longhangoc/numpadcsharp/releases/latest");
+            var response = await client.GetAsync("https://api.github.com/repos/longhangoc/numpadcsharp/releases/latest");
+            if (!response.IsSuccessStatusCode)
+                return; // Chưa có release hoặc rate limit
+
+            var json = await response.Content.ReadAsStringAsync();
             using var doc = JsonDocument.Parse(json);
             var tag = doc.RootElement.GetProperty("tag_name").GetString();
             if (Version.TryParse(tag?.TrimStart('v'), out var latest) && latest > Assembly.GetEntryAssembly()!.GetName().Version)
@@ -441,7 +445,10 @@ public partial class MainWindow : Window
                 updateWin.ShowDialog();
             }
         }
-        catch { /* silent */ }
+        catch
+        {
+            // Silent - không làm phiền người dùng khi start app
+        }
     }
 
 }

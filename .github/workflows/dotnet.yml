@@ -28,6 +28,13 @@ jobs:
       - name: Publish self-contained single-file app
         run: dotnet publish NumpadOverlay.csproj --configuration Release --runtime win-x64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false -o ${{ github.workspace }}/publish
 
+      - name: Clean unnecessary files
+        run: |
+          Remove-Item -Path "${{ github.workspace }}/publish/*.pdb" -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "${{ github.workspace }}/publish/*.json" -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "${{ github.workspace }}/publish/*.dll" -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "${{ github.workspace }}/publish/*.config" -Force -ErrorAction SilentlyContinue
+
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
         with:
